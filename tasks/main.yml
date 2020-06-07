@@ -7,4 +7,23 @@
 # Description:
 #   Role that schedules a backup for MySQL databases.
 
-- name: 
+- name: "Transfer template .my.cnf.j2 to /root/.my.cnf (Set user permissions)"
+  template:
+    src: .my.cnf.j2
+    dest: /root/my.cnf
+    owner: root
+    group: root
+    mode: 0600
+
+- name: "Create directory structure for creating mysql backups"
+  file:
+    path: /opt/backup/mysql
+    state: directory
+    owner: root
+    group: root
+    mode: 0600
+
+- name: "Transfer backup script to host"
+
+- name: "Schedule backup script"
+    
