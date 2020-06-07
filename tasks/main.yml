@@ -1,0 +1,10 @@
+---
+# Title: Backup MySQL or MariaDB
+#
+# Author: Bitfinity-NL / L.Rutten
+# File: tasks/main.yml
+#
+# Description:
+#   Role that schedules a backup for MySQL databases.
+
+- name: 
