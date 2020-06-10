@@ -2,14 +2,16 @@
 #
 # Source(s): 
 #   https://www.robpeck.com/2018/06/backing-up-and-rotating-mysql-databases-the-easy-way/
+#   https://tecadmin.net/delete-files-older-x-days/
 
 MYSQL_ARGS="--defaults-extra-file=/root/.my.cnf"
 MYSQL="/usr/bin/mysql $MYSQL_ARGS"
 MYSQLDUMP="/usr/bin/mysqldump $MYSQL_ARGS"
 DEST="/opt/backup/mysql"
+RETENTION=7
 
 
-# Put databases in array excep system databases
+# Put databases in array except system databases
 readarray -t DBLIST < <($MYSQL -BNe "show databases" | egrep -v '(mysql|.*_schema|sys)' )
 
 for DB in "${DBLIST[@]}"
@@ -23,3 +25,5 @@ do
 
 done
 
+# Remove backups when retention is overdue.
+find $DEST -name "*.sql.gz" -type f -mtime +$RETENTION -exec rm -f {} \;
