@@ -24,6 +24,16 @@
     mode: 0600
 
 - name: "Transfer backup script to host"
-
+  template:
+     src: backup_db.sh.j2
+     dest: /root/backup_db.sh
+     owner: root
+     group: root
+     mode: 0700
+   
 - name: "Schedule backup script"
-    
+  cron:
+    name: "Schedule database backup daily at 05 minutes past 0:00"
+    minute: "5"
+    hour: "0"
+    job: "cd /root/ ; backup_db.sh >/dev/null 2>&1"
