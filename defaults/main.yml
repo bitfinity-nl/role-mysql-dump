@@ -1,0 +1,18 @@
+ 
+---
+# Title: Backup MySQL or MariaDB
+#
+# Author: Bitfinity-NL / L.Rutten
+# File: tasks/main.yml
+#
+# Description:
+#   Role that schedules a backup for MySQL databases.
+
+# -- Settings
+#
+# Variable(s):
+#   mysql_dump_user : 'root'      # Administrative MySQL/MariaDB account (default=root).
+#   mysql_dump_pass : 'password'  # Administrative MySQL/MariaDB password.
+#
+mysql_dump_user : '{{ def_mysql_user }}'
+mysql_dump_pass : '{{ def_mysql_user }}'
